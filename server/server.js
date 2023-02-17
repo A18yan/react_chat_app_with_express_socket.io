@@ -8,6 +8,20 @@ const { Server } = require("socket.io");
 // express parser
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+// mongoose connection
+mongoose.connect(
+  "mongodb://localhost/test",
+  () => {
+    console.log("connected to db");
+  },
+  () => {
+    console.log("error connecting to db");
+  }
+);
+mongoose.set("strictQuery", false);
+app.get("/", function (req, res) {
+  res.send("Hello World");
+});
 // server -> http
 const server = http.createServer(app);
 // cors setup -> allows react app to communicate with server
@@ -19,21 +33,7 @@ const io = new Server(server, {
     methods: ["GET", "POST"],
   },
 });
-// mongoose connection
-mongoose.connect(
-  "mongodb://localhost/test",
-  () => {
-    console.log("connected to db");
-  },
-  (err) => {
-    console.log("error connecting to db");
-  }
-);
-mongoose.set("strictQuery", false);
-app.get("/", function (req, res) {
-  res.send("Hello World");
-});
-
+// server running point
 server.listen(process.env.PORT, () => {
   console.log(`Server running at port ${process.env.PORT}`);
 });
