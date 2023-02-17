@@ -19,9 +19,7 @@ mongoose.connect(
   }
 );
 mongoose.set("strictQuery", false);
-app.get("/", function (req, res) {
-  res.send("Hello World");
-});
+
 // server -> http
 const server = http.createServer(app);
 // cors setup -> allows react app to communicate with server
@@ -33,6 +31,9 @@ const io = new Server(server, {
     methods: ["GET", "POST"],
   },
 });
+
+const user_router = require('./routes/user.routes');
+app.use("/api/auth", user_router);
 // server running point
 server.listen(process.env.PORT, () => {
   console.log(`Server running at port ${process.env.PORT}`);
