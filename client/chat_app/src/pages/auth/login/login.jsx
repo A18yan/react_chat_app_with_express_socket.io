@@ -1,10 +1,7 @@
 import React, { useState } from "react";
-
-export default function Login() {
-  const [show, setShow] = useState(false);
-  const [showMenu, setShowMenu] = useState(false);
-  const [openMenu, setOpenMenu] = useState(false);
-
+import {BsFilePerson} from 'react-icons/bs';
+import {MdOutlineMailOutline} from 'react-icons/md';
+const Register =() => {
   return (
     <div className="flex justify-center items-center w-full h-[100vh] px-4 bg-gray-100">
       <div
@@ -87,70 +84,27 @@ export default function Login() {
           <p className="text-base leading-4 text-gray-800">Full Name</p>
           <div className="relative w-full flex justify-center items-center">
             <input
-              className="pl-14 pr-6 w-full py-4 border rounded focus:outline border-gray-400 text-sm leading-4 text-gray-800 placeholder-gray-800"
+              className="pl-14 pr-6 w-full py-4 border rounded focus:outline border-gray-400 text-sm leading-4 text-gray-800 placeholder-gray-500"
               type="text"
               placeholder="Enter you full name"
               name
               id
             />
-            <svg
-              className="absolute left-6"
-              width={20}
-              height={20}
-              viewBox="0 0 20 20"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M3.33464 3.33398H16.668C17.5846 3.33398 18.3346 4.08398 18.3346 5.00065V15.0006C18.3346 15.9173 17.5846 16.6673 16.668 16.6673H3.33464C2.41797 16.6673 1.66797 15.9173 1.66797 15.0006V5.00065C1.66797 4.08398 2.41797 3.33398 3.33464 3.33398Z"
-                stroke="#1F2937"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M18.3346 5L10.0013 10.8333L1.66797 5"
-                stroke="#1F2937"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+            <BsFilePerson className="absolute left-6 text-gray-500 text-[1.2rem]"/>
           </div>
         </div>
         <div className="w-full flex flex-col justify-start items-start space-y-3">
           <p className="text-base leading-4 text-gray-800">Email address</p>
           <div className="relative w-full flex justify-center items-center">
             <input
-              className="pl-14 pr-6 w-full py-4 border rounded focus:outline border-gray-400 text-sm leading-4 text-gray-800 placeholder-gray-800"
+              className="pl-14 pr-6 w-full py-4 border rounded focus:outline border-gray-400 text-sm leading-4 text-gray-800 placeholder-gray-500"
               type="text"
               placeholder="Enter email here"
               name
               id
             />
-            <svg
-              className="absolute left-6"
-              width={20}
-              height={20}
-              viewBox="0 0 20 20"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M3.33464 3.33398H16.668C17.5846 3.33398 18.3346 4.08398 18.3346 5.00065V15.0006C18.3346 15.9173 17.5846 16.6673 16.668 16.6673H3.33464C2.41797 16.6673 1.66797 15.9173 1.66797 15.0006V5.00065C1.66797 4.08398 2.41797 3.33398 3.33464 3.33398Z"
-                stroke="#1F2937"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M18.3346 5L10.0013 10.8333L1.66797 5"
-                stroke="#1F2937"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+            <MdOutlineMailOutline className="absolute left-6 text-gray-500 text-[1.35rem]"/>
+          
           </div>
         </div>
         <div className="w-full flex flex-col justify-start items-start space-y-3">
@@ -228,3 +182,4 @@ export default function Login() {
     </div>
   );
 }
+export default Register;
