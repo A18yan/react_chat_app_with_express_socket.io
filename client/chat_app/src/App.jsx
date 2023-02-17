@@ -1,13 +1,12 @@
-import { useState } from 'react'
-import './App.css'
+import { Routes, Route } from "react-router-dom";
+import Login from "./pages/auth/login/login";
 
 function App() {
-
   return (
-    <div className="underline">
-     Hello
-    </div>
-  )
+    <Routes>
+      <Route path="/login" element={<Login />} />
+    </Routes>
+  );
 }
 
-export default App
+export default App;
