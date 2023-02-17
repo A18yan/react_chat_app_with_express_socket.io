@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import {BsFilePerson} from 'react-icons/bs';
 import {MdOutlineMailOutline} from 'react-icons/md';
 import { Link } from "react-router-dom";
-const Login =() => {
+const Register =() => {
   return (
     <div className="flex justify-center items-center w-full h-[100vh] px-4 bg-gray-100">
       <div
@@ -12,11 +13,11 @@ const Login =() => {
             Welcome Back
           </p>
           <p className="text-sm leading-4 text-gray-500">
-            Don't have an account?
-            <Link to='/signup'
+            Already have an account?
+            <Link to='/login'
               className="hover:underline font-bold text-gray-800 pl-1 hover:cursor-pointer"
             >
-              Signup
+              Log In
             </Link>
           </p>
         </div>
@@ -79,6 +80,19 @@ const Login =() => {
           <hr className="border-gray-400 w-full" />
           <p className="text-base leading-4 text-gray-400">or</p>
           <hr className="border-gray-400 w-full" />
+        </div>
+        <div className="w-full flex flex-col justify-start items-start space-y-3">
+          <p className="text-base leading-4 text-gray-800">Full Name</p>
+          <div className="relative w-full flex justify-center items-center">
+            <input
+              className="pl-14 pr-6 w-full py-4 border rounded focus:outline border-gray-400 text-sm leading-4 text-gray-800 placeholder-gray-500"
+              type="text"
+              placeholder="Enter you full name"
+              name
+              id
+            />
+            <BsFilePerson className="absolute left-6 text-gray-500 text-[1.2rem]"/>
+          </div>
         </div>
         <div className="w-full flex flex-col justify-start items-start space-y-3">
           <p className="text-base leading-4 text-gray-800">Email address</p>
@@ -163,10 +177,10 @@ const Login =() => {
           </p>
         </div>
         <button className="py-4 w-full rounded bg-blue-700 hover:bg-blue-600 focus:bg-blue-800 text-base font-medium leading-none text-white">
-          Login
+          Register
         </button>
       </div>
     </div>
   );
 }
-export default Login;
+export default Register;
