@@ -48,6 +48,10 @@ userSchema.methods = {
     authenticate(plainPassword) {
         return this.hashPassword(plainPassword) === this.password;
     },
+    token(){
+        const token = crypto.randomBytes(20).toString('hex');
+        return token;
+    }
 };
 
 module.exports = mongoose.model('User', userSchema);
