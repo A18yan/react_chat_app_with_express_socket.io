@@ -2,7 +2,16 @@ import React, { useState } from "react";
 import {BsFilePerson} from 'react-icons/bs';
 import {MdOutlineMailOutline} from 'react-icons/md';
 import { Link } from "react-router-dom";
+import { signup_store } from "./store";
 const Register =() => {
+  const { data, setData } = useState({
+    name: '',
+    email: '',
+    password: '',
+  });
+  const set_data = signup_store(state => state.set_data);
+  const formData = signup_store(state => state.form_data);
+  const signup = signup_store(state => state.signup);
   return (
     <div className="flex justify-center items-center w-full h-[100vh] px-4 bg-gray-100">
       <div
@@ -85,11 +94,12 @@ const Register =() => {
           <p className="text-base leading-4 text-gray-800">Full Name</p>
           <div className="relative w-full flex justify-center items-center">
             <input
+              onChange={(e) => set_data({ name: e.target.value })}
               className="pl-14 pr-6 w-full py-4 border rounded focus:outline border-gray-400 text-sm leading-4 text-gray-800 placeholder-gray-500"
               type="text"
               placeholder="Enter you full name"
-              name
-              id
+              name='name'
+              required
             />
             <BsFilePerson className="absolute left-6 text-gray-500 text-[1.2rem]"/>
           </div>
@@ -98,25 +108,26 @@ const Register =() => {
           <p className="text-base leading-4 text-gray-800">Email address</p>
           <div className="relative w-full flex justify-center items-center">
             <input
+              onChange={(e) => set_data({ email: e.target.value })}
               className="pl-14 pr-6 w-full py-4 border rounded focus:outline border-gray-400 text-sm leading-4 text-gray-800 placeholder-gray-500"
               type="text"
               placeholder="Enter email here"
-              name
-              id
+              name='email'
+              required
             />
-            <MdOutlineMailOutline className="absolute left-6 text-gray-500 text-[1.35rem]"/>
-          
+            <MdOutlineMailOutline className="absolute left-6 text-gray-500 text-[1.35rem]" />
           </div>
         </div>
         <div className="w-full flex flex-col justify-start items-start space-y-3">
           <p className="text-base leading-4 text-gray-800">Password</p>
           <div className="relative w-full flex justify-center items-center">
             <input
+              onChange={(e) => set_data({ password: e.target.value })}
               className="pl-14 pr-6 w-full py-4 border rounded focus:outline border-gray-400 text-sm leading-4 text-gray-500 placeholder-gray-500"
               type="password"
               placeholder="Enter password here"
-              name
-              id
+              name='password'
+              required
             />
             <svg
               className="absolute left-6"
@@ -176,7 +187,11 @@ const Register =() => {
             <span className="text-gray-800 pl-[.2em]">Privacy</span>
           </p>
         </div>
-        <button className="py-4 w-full rounded bg-blue-700 hover:bg-blue-600 focus:bg-blue-800 text-base font-medium leading-none text-white">
+        <button
+          onClick={() => {
+            if (signup()) window.location.replace('/login')
+          }}
+          className="py-4 w-full rounded bg-[#2e2e2e] hover:bg-teal-600 text-base font-medium leading-none text-white">
           Register
         </button>
       </div>

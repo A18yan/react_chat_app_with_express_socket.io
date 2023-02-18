@@ -23,7 +23,14 @@ mongoose.set("strictQuery", false);
 // server -> http
 const server = http.createServer(app);
 // cors setup -> allows react app to communicate with server
-app.use(cors());
+const corsOption = {
+  credentials: true,
+  origin: "http://127.0.0.1:5173",
+  "Access-Control-Allow-Origin": "*",
+  preflightContinue: false,
+};
+app.use(cors(corsOption));
+app.options("*", cors(corsOption));
 // socket io -> also setups cors
 const io = new Server(server, {
   cors: {

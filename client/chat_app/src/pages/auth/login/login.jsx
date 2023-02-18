@@ -91,7 +91,6 @@ const Login =() => {
               id
             />
             <MdOutlineMailOutline className="absolute left-6 text-gray-500 text-[1.35rem]"/>
-          
           </div>
         </div>
         <div className="w-full flex flex-col justify-start items-start space-y-3">
@@ -162,7 +161,7 @@ const Login =() => {
             <span className="text-gray-800 pl-[.2em]">Privacy</span>
           </p>
         </div>
-        <button className="py-4 w-full rounded bg-blue-700 hover:bg-blue-600 focus:bg-blue-800 text-base font-medium leading-none text-white">
+        <button className="py-4 w-full rounded bg-[#2e2e2e] hover:bg-teal-600 text-base font-medium leading-none text-white">
           Login
         </button>
       </div>
