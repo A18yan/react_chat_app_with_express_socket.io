@@ -1,16 +1,21 @@
 import React from 'react'
 import { AiOutlineSend } from 'react-icons/ai';
 import { FiImage } from 'react-icons/fi';
+import { message_store } from '../store';
 const Messages = () => {
+    // store calls
+    const to = message_store(state => state.to);
+    const send_message = message_store(state => state.send_message);
+    const set_message = message_store(state => state.set_message);
     return (
         <>
-            <div className="w-full h-full flex-col hidden pb-[.6e   m]  md:flex">
+            <div className="w-full h-full flex-col hidden pb-[.6em]  md:flex">
                 <div className="h-16 border-b flex justify-between items-center w-full px-5 py-2 shadow-sm">
                     <div className="flex items-center">
                         <img className="h-10 w-10 overflow-hidden rounded-full"
-                            src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=60&raw_url=true&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dXNlcnN8ZW58MHwyfDB8fA%3D%3D&auto=format&fit=crop&w=500"
-                            alt="" />
-                        <p className="font-semibold ml-3 text-slate-600">Mircel Jones</p>
+                            src={`https://api.dicebear.com/5.x/avataaars/svg?seed=${to.name}&size=64&`}
+                            alt={to.name} />
+                        <p className="font-semibold ml-3 text-slate-600">{to.name}</p>
                     </div>
                     <div className="flex items-center space-x-5">
                         <svg xmlns="http://www.w3.org/2000/svg"
@@ -31,23 +36,23 @@ const Messages = () => {
                 <div className="h-full px-10 overflow-y-scroll py-4">
                     <div className="text-center  my-5">
                         <hr className="-mb-3" />
-                        <span className="text-xs text-slate-300 font-medium bg-white px-3 -mt-3">Wednesday, Feburary
+                        <span className="text-xs text-slate-300 font-medium bg-white px-3 -mt-3">Wednesday, February
                             5</span>
                     </div>
                     <div className="w-full flex flex-start overflow-y-auto">
-                        <div className="w-[95%] sm:w-[75%] lg:w-[60%]">
+                        <div className="max-w-[95%] sm:max-w-[75%] lg:max-w-[60%]">
                             <div className="flex items-center">
                                 <img className="h-5 w-5 overflow-hidden rounded-full"
-                                    src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=60&raw_url=true&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dXNlcnN8ZW58MHwyfDB8fA%3D%3D&auto=format&fit=crop&w=500"
-                                    alt="" />
-                                <p className="font-semibold ml-3 text-sm text-slate-600">Mircel Jones <span
+                                    src={`https://api.dicebear.com/5.x/avataaars/svg?seed=${to.name}&size=64&`}
+                                    alt={to.name} />
+                                <p className="font-semibold ml-3 text-sm text-slate-600">{to.name} <span
                                     className="text-slate-400 text-xs">3:21 PM</span></p>
                             </div>
 
                             <div className="mt-3 w-full bg-slate-50 p-4 rounded-b-xl rounded-tr-xl">
                                 <p className=" text-sm text-slate-500">
                                     Hey all, 
-                                    There are many variation of passages of Lorem ipsum avaliable, but the jority have alternation in some form , by injected humor, or randomise words which don't look even slightly believable.
+                                    There are many variation of passages of Lorem ipsum available, but the jokily have alternation in some form , by injected humor, or randomize words which don't look even slightly believable.
                                 </p>
                             </div>
                         </div>
@@ -67,7 +72,7 @@ const Messages = () => {
                             <div className="mt-3 w-full bg-blue-500 p-4 rounded-b-xl rounded-tl-xl">
                                 <p className=" text-sm text-white">
                                     Hey, <br />
-                                    we are own hidden lake forest which is netural lake are generaly found in mountain.
+                                    we are own hidden lake forest which is neutral lake are generally found in mountain.
                                 </p>
                             </div>
                         </div>
@@ -78,7 +83,7 @@ const Messages = () => {
                             5</span>
                     </div>
                     <div className="w-full flex flex-start">
-                        <div className="w-[95%] sm:w-[75%] lg:w-[60%]">
+                        <div className="max-w-[95%] sm:max-w-[75%] lg:max-w-[60%] min-w-fit">
                             <div className="flex items-center">
                                 <img className="h-5 w-5 overflow-hidden rounded-full"
                                     src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=60&raw_url=true&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dXNlcnN8ZW58MHwyfDB8fA%3D%3D&auto=format&fit=crop&w=500"
@@ -87,7 +92,7 @@ const Messages = () => {
                                     className="text-slate-400 text-xs">3:21 PM</span></p>
                             </div>
 
-                            <div className="mt-3  bg-slate-50 p-4 rounded-b-xl rounded-tr-xl">
+                            <div className="mt-3 bg-slate-50 p-4 rounded-b-xl rounded-tr-xl">
                                 <p className=" text-sm text-slate-500">
                                     ok, Thanks
                                 </p>
@@ -98,11 +103,17 @@ const Messages = () => {
                 <div className="w-full px-5 py-3 sticky bottom-2">
                     <div
                         className="h-12 flex justify-between px-3 items-center border border-transparent bg-slate-50 border-slate-300 rounded-lg">
-                        <input type="text" className="w-full px-3 bg-transparent outline-none placeholder:text-slate-400"
+                        <input type="text"
+                            onChange={(e) => { set_message({ message: e.target.value }) }}
+                            className="w-full px-3 bg-transparent outline-none placeholder:text-slate-400"
                             placeholder="Type your message" />
                         <div className="flex items-center space-x-3">
                             <FiImage className='text-[1.3rem]  text-gray-400' />
-                            <AiOutlineSend className='text-[1.3rem] hover:cursor-pointer text-gray-400'/>
+                            <AiOutlineSend
+                                onClick={() => {
+                                    send_message();
+                                }}
+                                className='text-[1.3rem] hover:cursor-pointer text-gray-400' />
                         </div>
                     </div>
                 </div>

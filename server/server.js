@@ -39,6 +39,16 @@ const io = new Server(server, {
   },
 });
 
+io.on('connection', (socket) => {
+  console.log(`connected ${socket.id}`);
+  socket.on('disconnect', () => {
+    console.log('disconnected');
+  });
+  socket.on('send-message', (data) => {
+    console.log(data);
+    // io.emit('new-message', data);
+  })
+})
 const user_router = require('./routes/user.routes');
 app.use("/api/auth", user_router);
 // server running point

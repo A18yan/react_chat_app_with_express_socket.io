@@ -5,7 +5,7 @@ import Users from './components/users'
 const Inbox = () => {
     return (
         <>
-            <div className="h-full flex">
+            <div className="h-full w-[100%] flex">
                 <Users />
                 <Messages />
             </div>
