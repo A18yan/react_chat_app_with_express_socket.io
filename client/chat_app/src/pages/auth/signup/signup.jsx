@@ -1,16 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import {BsFilePerson} from 'react-icons/bs';
 import {MdOutlineMailOutline} from 'react-icons/md';
 import { Link } from "react-router-dom";
 import { signup_store } from "./store";
 const Register =() => {
-  const { data, setData } = useState({
-    name: '',
-    email: '',
-    password: '',
-  });
+  // store calls
   const set_data = signup_store(state => state.set_data);
-  const formData = signup_store(state => state.form_data);
   const signup = signup_store(state => state.signup);
   return (
     <div className="flex justify-center items-center w-full h-[100vh] px-4 bg-gray-100">
@@ -165,7 +160,6 @@ const Register =() => {
               className={`cursor-pointer appearance-none w-4 h-4 border-gray-500 border rounded`}
             />
             <svg
-            //   onClick={update}
               className="absolute"
               width={11}
               height={8}
