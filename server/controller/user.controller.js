@@ -42,7 +42,7 @@ module.exports.login = (req, res) => {
                 if (!user.authenticate(password)) response(res, 200, 'wrong password', 400);
                 if (user.authenticate(password)) {
                     const token = user.token();
-                    response_with_data(res, 200, 'logged in successfully', 200, token);
+                    return res.status(200).json({ message: 'logged in successfully', status: 200, token });
                 }
             }
         })
@@ -50,4 +50,17 @@ module.exports.login = (req, res) => {
             response(res, 400, 'error logging in', 500);
         })
 
+}
+
+// get all users
+module.exports.get_all_users = (req, res) => {
+    User.find()
+        .select('name _id')
+        .then((users) => {
+            if (!users) response(res, 200, 'no users found', 400);
+            if (users) return res.status(200).json({ status: 200, users });
+        })
+        .catch((err) => {
+            response(res, 400, 'error getting users', 500);
+        })
 }
