@@ -10,7 +10,7 @@ function App() {
       <Route path="/signup" element={<Register />} />
       <Route path="/login" element={<Login />} />
       <Route element={<ProtectedRoute />} >
-        <Route path="/h" element={<div>Home</div>} />
+        <Route path="/h" element={<div>Home</div>} /> {/* change this route */}
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>
