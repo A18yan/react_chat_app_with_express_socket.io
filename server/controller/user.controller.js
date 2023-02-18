@@ -4,9 +4,9 @@ const User = require('../model/user.model');
 const response = (res, server_status, message, status) => {
     return res.status(server_status).json({ message, status });
 }
-// response_with_data -> a function to return a response with data
+// response_with_data -> a function to return a token
 const response_with_data = (res, server_status, message, status, data) => {
-    return res.status(server_status).json({ message, status, data });
+    return res.status(server_status).json({ message, status, token:data });
 }
 // sign in -> sign in a user with name, email and password field
 module.exports.register = (req, res) => {
@@ -42,15 +42,7 @@ module.exports.login = (req, res) => {
                 if (!user.authenticate(password)) response(res, 200, 'wrong password', 400);
                 if (user.authenticate(password)) {
                     const token = user.token();
-                    user.token = token;
-                    user.save()
-                        .then((saved_user) => {
-                            if (!saved_user) response(res, 200, 'error logging in', 400);
-                            if (saved_user) response_with_data(res, 200, 'logged in successfully', 200, saved_user);
-                        })
-                        .catch((err) => {   
-                            response(res, 400, 'error logging in', 500);
-                        })
+                    response_with_data(res, 200, 'logged in successfully', 200, token);
                 }
             }
         })

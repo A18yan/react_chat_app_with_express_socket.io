@@ -1,7 +1,11 @@
 import React from "react";
 import {MdOutlineMailOutline} from 'react-icons/md';
 import { Link } from "react-router-dom";
+import { login_store } from "./login-store";
 const Login =() => {
+  // store calls
+  const set_data = login_store(state => state.set_data);
+  const login = login_store(state => state.login);
   return (
     <div className="flex justify-center items-center w-full h-[100vh] px-4 bg-gray-100">
       <div
@@ -84,11 +88,12 @@ const Login =() => {
           <p className="text-base leading-4 text-gray-800">Email address</p>
           <div className="relative w-full flex justify-center items-center">
             <input
+              onChange={(e) => { set_data({ email: e.target.value }) }}
               className="pl-14 pr-6 w-full py-4 border rounded focus:outline border-gray-400 text-sm leading-4 text-gray-800 placeholder-gray-500"
               type="text"
               placeholder="Enter email here"
-              name
-              id
+              name='email'
+              required
             />
             <MdOutlineMailOutline className="absolute left-6 text-gray-500 text-[1.35rem]"/>
           </div>
@@ -97,11 +102,12 @@ const Login =() => {
           <p className="text-base leading-4 text-gray-800">Password</p>
           <div className="relative w-full flex justify-center items-center">
             <input
+              onChange={(e) => { set_data({ password: e.target.value }) }}
               className="pl-14 pr-6 w-full py-4 border rounded focus:outline border-gray-400 text-sm leading-4 text-gray-500 placeholder-gray-500"
               type="password"
               placeholder="Enter password here"
-              name
-              id
+              name='password'
+              required
             />
             <svg
               className="absolute left-6"
@@ -139,7 +145,6 @@ const Login =() => {
               className={`cursor-pointer appearance-none w-4 h-4 border-gray-500 border rounded`}
             />
             <svg
-            //   onClick={update}
               className="absolute"
               width={11}
               height={8}
@@ -161,7 +166,12 @@ const Login =() => {
             <span className="text-gray-800 pl-[.2em]">Privacy</span>
           </p>
         </div>
-        <button className="py-4 w-full rounded bg-[#2e2e2e] hover:bg-teal-600 text-base font-medium leading-none text-white">
+        <button
+          onClick={() => {
+            login()
+            // if (login()) window.location.replace('/')
+          }}
+          className="py-4 w-full rounded bg-[#2e2e2e] hover:bg-teal-600 text-base font-medium leading-none text-white">
           Login
         </button>
       </div>

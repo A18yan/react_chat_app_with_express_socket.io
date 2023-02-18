@@ -2,7 +2,7 @@ import React from "react";
 import {BsFilePerson} from 'react-icons/bs';
 import {MdOutlineMailOutline} from 'react-icons/md';
 import { Link } from "react-router-dom";
-import { signup_store } from "./store";
+import { signup_store } from "./signup-store";
 const Register =() => {
   // store calls
   const set_data = signup_store(state => state.set_data);
