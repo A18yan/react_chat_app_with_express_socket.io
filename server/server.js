@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 mongoose.connect(
   "mongodb://localhost/chat_app",
   () => {
-    console.log("connected to db");
+    console.log("connected to chat_app database");
   },
   () => {
     console.log("error connecting to db");
