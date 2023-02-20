@@ -11,10 +11,10 @@ export const noAuthAxios = axios.create({
 })
 // axios instance for authenticated requests
 export const authAxios = axios.create({
-    baseURL: baseUrl,
-    withCredentials: true,
-    headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${localStorage.getItem('token')}`,
-    },
-})
+  baseURL: baseUrl,
+  withCredentials: true,
+  headers: {
+    "Content-Type": "application/json",
+    token: `${localStorage.getItem("token")}`,
+  },
+});

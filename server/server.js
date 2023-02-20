@@ -5,9 +5,11 @@ const app = express();
 const http = require("http");
 const cors = require("cors");
 const { Server } = require("socket.io");
+const path = require("path");
 // express parser
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, "uploads")));
 // mongoose connection
 mongoose.connect(
   "mongodb://localhost/chat_app",
@@ -39,6 +41,7 @@ const io = new Server(server, {
   },
 });
 
+// socket io connection
 io.on('connection', (socket) => {
   console.log(`connected ${socket.id}`);
   socket.on('disconnect', () => {
@@ -49,8 +52,14 @@ io.on('connection', (socket) => {
     // io.emit('new-message', data);
   })
 })
+
+
 const user_router = require('./routes/user.routes');
 app.use("/api/auth", user_router);
+
+// message route
+const message_router = require('./routes/message.routes');
+app.use("/api/message", message_router);
 // server running point
 server.listen(process.env.PORT, () => {
   console.log(`Server running at port ${process.env.PORT}`);
