@@ -13,9 +13,9 @@ const response_with_data = (res, server_status, message, status, data) => {
 
 // make a function that adds the message send from frontend to the database, also export the function
 module.exports.add_message = (req, res) => {
-  console.log(req.body);
-  console.log(req.files);
-  res.json({ ...req.files });
+    console.log(req.body);
+    console.log(req.files);
+    res.json({ ...req.files });
   // const { message, sender, receiver } = req.body;
   // if (!message) response(res, 200, "message is required", 400);
   // if (!sender) response(res, 200, "sender is required", 400);

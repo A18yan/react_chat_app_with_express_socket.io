@@ -169,7 +169,7 @@ const Login =() => {
         <button
           onClick={() => {
             login()
-            // if (login()) window.location.replace('/')
+            if (login()) window.location.replace('/chat')
           }}
           className="py-4 w-full rounded bg-[#2e2e2e] hover:bg-teal-600 text-base font-medium leading-none text-white">
           Login

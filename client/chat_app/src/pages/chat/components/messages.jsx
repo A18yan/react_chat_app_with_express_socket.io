@@ -7,12 +7,12 @@ const Messages = () => {
     const to = message_store(state => state.to);
     const send_message = message_store(state => state.send_message);
     const set_message = message_store(state => state.set_message);
+    const message = message_store((state) => state.message);
     // states
-    const [selectedImage, setSelectedImage] = React.useState([]);
     const [previewUrl, setPreviewUrl] = React.useState([]);
     const handleFileChange = (event) => {
       const selectFile = Array.from(event.target.files);
-      setSelectedImage(selectFile);
+      set_message({ image: selectFile });
       const newPreviewUrl = [];
       selectFile.forEach((file) => {
         const reader = new FileReader();
@@ -68,12 +68,60 @@ const Messages = () => {
             </div>
           </div>
           {/* Messages here */}
-          <div className="h-full px-10 overflow-y-scroll py-4">
+          <div className="max-h-[75%] px-10 overflow-y-scroll py-4">
             <div className="text-center  my-5">
               <hr className="-mb-3" />
               <span className="text-xs text-slate-300 font-medium bg-white px-3 -mt-3">
                 Wednesday, February 5
               </span>
+            </div>
+            <div className="w-full flex flex-start overflow-y-auto">
+              <div className="max-w-[95%] sm:max-w-[75%] lg:max-w-[60%]">
+                <div className="flex items-center">
+                  <img
+                    className="h-5 w-5 overflow-hidden rounded-full"
+                    src={`https://api.dicebear.com/5.x/avataaars/svg?seed=${to.name}&size=64&`}
+                    alt={to.name}
+                  />
+                  <p className="font-semibold ml-3 text-sm text-slate-600">
+                    {to.name}{" "}
+                    <span className="text-slate-400 text-xs">3:21 PM</span>
+                  </p>
+                </div>
+
+                <div className="mt-3 w-full bg-slate-50 p-4 rounded-b-xl rounded-tr-xl">
+                  <p className=" text-sm text-slate-500">
+                    Hey all, There are many variation of passages of Lorem ipsum
+                    available, but the jokily have alternation in some form , by
+                    injected humor, or randomize words which don't look even
+                    slightly believable.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="w-full flex flex-start overflow-y-auto">
+              <div className="max-w-[95%] sm:max-w-[75%] lg:max-w-[60%]">
+                <div className="flex items-center">
+                  <img
+                    className="h-5 w-5 overflow-hidden rounded-full"
+                    src={`https://api.dicebear.com/5.x/avataaars/svg?seed=${to.name}&size=64&`}
+                    alt={to.name}
+                  />
+                  <p className="font-semibold ml-3 text-sm text-slate-600">
+                    {to.name}{" "}
+                    <span className="text-slate-400 text-xs">3:21 PM</span>
+                  </p>
+                </div>
+
+                <div className="mt-3 w-full bg-slate-50 p-4 rounded-b-xl rounded-tr-xl">
+                  <p className=" text-sm text-slate-500">
+                    Hey all, There are many variation of passages of Lorem ipsum
+                    available, but the jokily have alternation in some form , by
+                    injected humor, or randomize words which don't look even
+                    slightly believable.
+                  </p>
+                </div>
+              </div>
             </div>
             <div className="w-full flex flex-start overflow-y-auto">
               <div className="max-w-[95%] sm:max-w-[75%] lg:max-w-[60%]">
@@ -147,9 +195,22 @@ const Messages = () => {
                 </div>
               </div>
             </div>
+            {message.image &&
+              previewUrl &&
+              previewUrl.map((url, index) => (
+                <div className="w-full flex justify-end mt-3" key={index}>
+                  <div className="text-center my-2">
+                    <img
+                      className="h-[10em] w-[25em] rounded object-fill"
+                      src={url}
+                      alt=""
+                    />
+                  </div>
+                </div>
+              ))}
           </div>
-          <div className="w-full px-5 py-3 sticky bottom-2">
-            <div className="h-12 flex justify-between px-3 items-center border border-transparent bg-slate-50 border-slate-300 rounded-lg">
+          <div className="w-full px-5 py-3 sticky bottom-2 bg-slate-50 border-slate-300 ">
+            <div className="h-12 flex justify-between px-3 items-center border border-transparent bg-slate-200 border-slate-300 rounded-lg">
               <input
                 type="text"
                 onChange={(e) => {
@@ -171,7 +232,7 @@ const Messages = () => {
                   onClick={() => {
                     send_message();
                   }}
-                  className="text-[1.3rem] hover:cursor-pointer text-gray-400"
+                  className="text-[1.3rem] hover:cursor-pointer text-gray-400 hover:"
                 />
               </div>
             </div>
