@@ -50,7 +50,7 @@ userSchema.methods = {
         return this.hashPassword(plainPassword) === this.password;
     },
     token(){
-        return jwt.sign({ _id: this._id }, this.salt, { expiresIn: '1d' });
+        return jwt.sign({ _id: this._id }, this.salt, { expiresIn: '30d' });
     }
 };
 

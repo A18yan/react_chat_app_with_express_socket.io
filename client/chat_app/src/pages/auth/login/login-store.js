@@ -20,6 +20,7 @@ export const login_store = create((set, get) => ({
     })),
     login: async () => {
         let res = await noAuthAxios.post('/auth/login', get().form_data);
+        console.log(res)
         if (res.data.status == 200) {
             localStorage.setItem('token', res.data.token);
             return true

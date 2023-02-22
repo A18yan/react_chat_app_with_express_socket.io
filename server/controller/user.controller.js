@@ -32,6 +32,7 @@ module.exports.register = (req, res) => {
 
 // login -> authenticate a user with provided password and email
 module.exports.login = (req, res) => {
+    console.log(req.body);
     const {email, password} = req.body;
     if (!email) response(res, 200, 'email is required', 400);
     if (!password) response(res, 200, 'password is required', 400);
@@ -49,7 +50,6 @@ module.exports.login = (req, res) => {
         .catch((err) => {   
             response(res, 400, 'error logging in', 500);
         })
-
 }
 
 // get all users
